@@ -32,7 +32,7 @@ You should create tests for Messenger with the following condition (In scope of 
       Use spy (0.3 points)
       Create custom extension (jUnit5) to output test execution information to file (0.3 points)
   + Using ExpectedException rule to check exceptions + Assertion mechanism (0.3 points)
-      Implement Disabling test on condition (0.1 points)
+  + Implement Disabling test on condition (0.1 points)
       Test quality and adequate coverage will be assessed as (0.5 points)
 
 Don't forget about good tests, checkstyle and other staff that already included into your build phase 

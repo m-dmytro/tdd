@@ -1,8 +1,11 @@
 package com.hw.tdd.service;
 
+import com.hw.tdd.DisableOnWeekends;
 import com.hw.tdd.FastTest;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.DisabledForJreRange;
+import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -171,6 +174,42 @@ public class TemplateParserTest {
                     List<String> placeholders = parser.parseTemplate(template.repeat(n));
                     Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders));
                 }));
+    }
+
+    @Test
+    @DisableOnWeekends
+    public void getPlaceholdersFromTemplate_checkDisableUsingCustomAnnotation() {
+        TemplateParser parser = new TemplateParser();
+
+        List<String> placeholders1 = parser.parseTemplate(VALID_TEMPLATE_1);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders1, Arrays.asList("value1", "value2", "value3")));
+
+        List<String> placeholders2 = parser.parseTemplate(VALID_TEMPLATE_2);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders2, Arrays.asList("value21", "value22")));
+
+        List<String> placeholders3 = parser.parseTemplate(VALID_TEMPLATE_3);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders3));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders3, Arrays.asList("value31", "value32")));
+    }
+
+    @Test
+    @DisabledForJreRange(min = JRE.JAVA_14, max = JRE.JAVA_17)
+    public void getPlaceholdersFromTemplate_checkDisableUsingAnnotation() {
+        TemplateParser parser = new TemplateParser();
+
+        List<String> placeholders1 = parser.parseTemplate(VALID_TEMPLATE_1);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders1, Arrays.asList("value1", "value2", "value3")));
+
+        List<String> placeholders2 = parser.parseTemplate(VALID_TEMPLATE_2);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders2, Arrays.asList("value21", "value22")));
+
+        List<String> placeholders3 = parser.parseTemplate(VALID_TEMPLATE_3);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders3));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders3, Arrays.asList("value31", "value32")));
     }
 
 }
