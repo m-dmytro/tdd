@@ -1,0 +1,1 @@
+Some text input 1: #{value1}, Some text input 2: #{value2}, Some text input 3: #{value3}.

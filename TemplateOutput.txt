@@ -1,0 +1,1 @@
+Some text input 1: #{pr_value1}, Some text input 2: #{pr_value2}, Some text input 3: #{pr_value3}.

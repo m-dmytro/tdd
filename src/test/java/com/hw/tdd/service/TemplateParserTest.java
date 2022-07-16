@@ -1,8 +1,8 @@
 package com.hw.tdd.service;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,16 +23,16 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         List<String> placeholders1 = parser.parseTemplate(VALID_TEMPLATE_1);
-        Assert.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
-        Assert.assertTrue(CollectionUtils.containsAll(placeholders1, Arrays.asList("value1", "value2", "value3")));
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders1, Arrays.asList("value1", "value2", "value3")));
 
         List<String> placeholders2 = parser.parseTemplate(VALID_TEMPLATE_2);
-        Assert.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
-        Assert.assertTrue(CollectionUtils.containsAll(placeholders2, Arrays.asList("value21", "value22")));
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders2, Arrays.asList("value21", "value22")));
 
         List<String> placeholders3 = parser.parseTemplate(VALID_TEMPLATE_3);
-        Assert.assertTrue(CollectionUtils.isNotEmpty(placeholders3));
-        Assert.assertTrue(CollectionUtils.containsAll(placeholders3, Arrays.asList("value31", "value32")));
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders3));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders3, Arrays.asList("value31", "value32")));
     }
 
     @Test
@@ -40,12 +40,12 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         List<String> placeholders1 = parser.parseTemplate(INVALID_TEMPLATE_1);
-        Assert.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
-        Assert.assertTrue(CollectionUtils.containsAll(placeholders1, List.of("value12")));
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders1));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders1, List.of("value12")));
 
         List<String> placeholders2 = parser.parseTemplate(INVALID_TEMPLATE_2);
-        Assert.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
-        Assert.assertTrue(CollectionUtils.containsAll(placeholders2, List.of("value22")));
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders2));
+        Assertions.assertTrue(CollectionUtils.containsAll(placeholders2, List.of("value22")));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         List<String> placeholders = parser.parseTemplate(WITHOUT_PLACEHOLDERS_TEMPLATE);
-        Assert.assertTrue(CollectionUtils.isEmpty(placeholders));
+        Assertions.assertTrue(CollectionUtils.isEmpty(placeholders));
     }
 
     @Test
@@ -70,16 +70,16 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         String result1 = parser.replacePlaceholders(VALID_TEMPLATE_1, placeholderValues);
-        Assert.assertNotNull(result1);
-        Assert.assertEquals("Some text input 1: #{processed_value1}, Some text input 2: #{processed_value2}, Some text input 3: #{processed_value3}.", result1);
+        Assertions.assertNotNull(result1);
+        Assertions.assertEquals("Some text input 1: #{processed_value1}, Some text input 2: #{processed_value2}, Some text input 3: #{processed_value3}.", result1);
 
         String result2 = parser.replacePlaceholders(VALID_TEMPLATE_2, placeholderValues);
-        Assert.assertNotNull(result2);
-        Assert.assertEquals("Some text input 1: #{processed_value21}, Some text input 2: #{processed_value22}.", result2);
+        Assertions.assertNotNull(result2);
+        Assertions.assertEquals("Some text input 1: #{processed_value21}, Some text input 2: #{processed_value22}.", result2);
 
         String result3 = parser.replacePlaceholders(VALID_TEMPLATE_3, placeholderValues);
-        Assert.assertNotNull(result3);
-        Assert.assertEquals("Some text input 1: #{processed_value31}, Some text input 2: #{processed_value32}, Some text input 3: #{processed_value32}.", result3);
+        Assertions.assertNotNull(result3);
+        Assertions.assertEquals("Some text input 1: #{processed_value31}, Some text input 2: #{processed_value32}, Some text input 3: #{processed_value32}.", result3);
     }
 
     @Test
@@ -96,16 +96,16 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         String result1 = parser.replacePlaceholders(VALID_TEMPLATE_1, placeholderValues);
-        Assert.assertNotNull(result1);
-        Assert.assertNotEquals("Some text input 1: #{value1}, Some text input 2: #{value2}, Some text input 3: #{value3}.", result1);
+        Assertions.assertNotNull(result1);
+        Assertions.assertNotEquals("Some text input 1: #{value1}, Some text input 2: #{value2}, Some text input 3: #{value3}.", result1);
 
         String result2 = parser.replacePlaceholders(VALID_TEMPLATE_2, placeholderValues);
-        Assert.assertNotNull(result2);
-        Assert.assertNotEquals("Some text input 1: #{value21}, Some text input 2: #{value22}.", result2);
+        Assertions.assertNotNull(result2);
+        Assertions.assertNotEquals("Some text input 1: #{value21}, Some text input 2: #{value22}.", result2);
 
         String result3 = parser.replacePlaceholders(VALID_TEMPLATE_3, placeholderValues);
-        Assert.assertNotNull(result3);
-        Assert.assertNotEquals("Some text input 1: #{value31}, Some text input 2: #{value32}, Some text input 3: #{value32}.", result3);
+        Assertions.assertNotNull(result3);
+        Assertions.assertNotEquals("Some text input 1: #{value31}, Some text input 2: #{value32}, Some text input 3: #{value32}.", result3);
     }
 
     @Test
@@ -119,12 +119,12 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         String result1 = parser.replacePlaceholders(INVALID_TEMPLATE_1, placeholderValues);
-        Assert.assertNotNull(result1);
-        Assert.assertEquals("Some text input 1: #{{value11}, Some text input 2: #{processed_value12}.", result1);
+        Assertions.assertNotNull(result1);
+        Assertions.assertEquals("Some text input 1: #{{value11}, Some text input 2: #{processed_value12}.", result1);
 
         String result2 = parser.replacePlaceholders(INVALID_TEMPLATE_2, placeholderValues);
-        Assert.assertNotNull(result2);
-        Assert.assertEquals("Some text input 1: {value21}, Some text input 2: #{processed_value22}.", result2);
+        Assertions.assertNotNull(result2);
+        Assertions.assertEquals("Some text input 1: {value21}, Some text input 2: #{processed_value22}.", result2);
     }
 
     @Test
@@ -141,8 +141,8 @@ public class TemplateParserTest {
         TemplateParser parser = new TemplateParser();
 
         String result = parser.replacePlaceholders(WITHOUT_PLACEHOLDERS_TEMPLATE, placeholderValues);
-        Assert.assertNotNull(result);
-        Assert.assertEquals(WITHOUT_PLACEHOLDERS_TEMPLATE, result);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(WITHOUT_PLACEHOLDERS_TEMPLATE, result);
     }
 
 }
