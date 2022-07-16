@@ -1,4 +1,4 @@
-package com.hw.tdd;
+package com.hw.tdd.extensions;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 

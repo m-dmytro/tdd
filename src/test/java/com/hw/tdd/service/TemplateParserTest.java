@@ -1,7 +1,7 @@
 package com.hw.tdd.service;
 
-import com.hw.tdd.DisableOnWeekends;
-import com.hw.tdd.FastTest;
+import com.hw.tdd.extensions.DisableOnWeekends;
+import com.hw.tdd.extensions.FastTest;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledForJreRange;

@@ -26,7 +26,7 @@ You should create tests for Messenger with the following condition (In scope of 
   + TDD approach – (2 points)
   + @Parameterized runner and Dynamic tests (0.3 points)
   + Implement meta annotations and filtering (0.3 points)
-      TemporaryFolder rule (0.3 points)
+  + TemporaryFolder rule (0.3 points)
   + Mock reading from file/console (0.3 points)
       Use partial mock (0.3 points)
       Use spy (0.3 points)

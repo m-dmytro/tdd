@@ -6,6 +6,22 @@ import java.io.*;
 
 public class FileParser {
 
+    public String readTemplateFromFile(File file) throws FileException {
+        StringBuilder template = new StringBuilder();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                template.append(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error during parsing file " + file.getName());
+            throw new FileException("Error during parsing file " + file.getName());
+        }
+        return template.toString();
+    }
+
     public String readTemplateFromFile(String filename) throws FileException {
         StringBuilder template = new StringBuilder();
         try {

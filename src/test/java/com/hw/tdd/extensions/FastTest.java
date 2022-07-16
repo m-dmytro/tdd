@@ -1,4 +1,4 @@
-package com.hw.tdd;
+package com.hw.tdd.extensions;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
