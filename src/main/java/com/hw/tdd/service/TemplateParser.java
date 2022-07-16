@@ -2,6 +2,7 @@ package com.hw.tdd.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,4 +22,11 @@ public class TemplateParser {
         return placeholders;
     }
 
+    public String replacePlaceholders(String template, Map<String, String> placeholderValues) {
+        String result = template;
+        for (Map.Entry<String, String> entry: placeholderValues.entrySet()) {
+            result = result.replace("#{" + entry.getKey() + "}", "#{" + entry.getValue()+ "}");
+        }
+        return result;
+    }
 }
