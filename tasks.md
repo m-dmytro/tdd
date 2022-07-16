@@ -25,7 +25,7 @@ Tasks:
 You should create tests for Messenger with the following condition (In scope of this task you can create more than one test to cover the same functionality):
   + TDD approach – (2 points)
   + @Parameterized runner and Dynamic tests (0.3 points)
-      Implement meta annotations and filtering (0.3 points)
+  + Implement meta annotations and filtering (0.3 points)
       TemporaryFolder rule (0.3 points)
   + Mock reading from file/console (0.3 points)
       Use partial mock (0.3 points)

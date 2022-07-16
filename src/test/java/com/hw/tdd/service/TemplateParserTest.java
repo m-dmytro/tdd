@@ -1,10 +1,8 @@
 package com.hw.tdd.service;
 
+import com.hw.tdd.FastTest;
 import org.apache.commons.collections4.CollectionUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -24,7 +22,7 @@ public class TemplateParserTest {
     private static final String INVALID_TEMPLATE_2 = "Some text input 1: {value21}, Some text input 2: #{value22}.";
     private static final String WITHOUT_PLACEHOLDERS_TEMPLATE = "Some text input 1: {value1}, Some text input 2: value2.";
 
-    @Test
+    @FastTest
     public void getPlaceholdersFromTemplate_allValidPlaceholder_returnAllPlaceholders() {
         TemplateParser parser = new TemplateParser();
 
@@ -41,7 +39,7 @@ public class TemplateParserTest {
         Assertions.assertTrue(CollectionUtils.containsAll(placeholders3, Arrays.asList("value31", "value32")));
     }
 
-    @Test
+    @FastTest
     public void getPlaceholdersFromTemplate_partInvalidPlaceholder_returnOnlyValidPlaceholders() {
         TemplateParser parser = new TemplateParser();
 
@@ -54,7 +52,7 @@ public class TemplateParserTest {
         Assertions.assertTrue(CollectionUtils.containsAll(placeholders2, List.of("value22")));
     }
 
-    @Test
+    @FastTest
     public void getPlaceholdersFromTemplate_withoutPlaceholders_returnEmpty() {
         TemplateParser parser = new TemplateParser();
 
@@ -62,7 +60,7 @@ public class TemplateParserTest {
         Assertions.assertTrue(CollectionUtils.isEmpty(placeholders));
     }
 
-    @Test
+    @FastTest
     public void replaceTemplatePlaceholders_allValidPlaceholders_validOutput() {
         Map<String, String> placeholderValues = new HashMap<>();
         placeholderValues.put("value1", "processed_value1");
@@ -89,6 +87,7 @@ public class TemplateParserTest {
     }
 
     @Test
+    @Tag("taxes")
     public void replaceTemplatePlaceholders_allValidPlaceholders_notReturnInputPlaceholder() {
         Map<String, String> placeholderValues = new HashMap<>();
         placeholderValues.put("value1", "processed_value1");
@@ -115,6 +114,7 @@ public class TemplateParserTest {
     }
 
     @Test
+    @Tag("taxes")
     public void replaceTemplatePlaceholders_partInvalidPlaceholders_validOutput() {
         Map<String, String> placeholderValues = new HashMap<>();
         placeholderValues.put("value11", "processed_value11");
@@ -134,6 +134,7 @@ public class TemplateParserTest {
     }
 
     @Test
+    @Tag("taxes")
     public void replaceTemplatePlaceholders_withoutPlaceholders_outputAsInput() {
         Map<String, String> placeholderValues = new HashMap<>();
         placeholderValues.put("value1", "processed_value1");
