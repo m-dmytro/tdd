@@ -2,12 +2,18 @@ package com.hw.tdd.service;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class TemplateParserTest {
 
@@ -143,6 +149,27 @@ public class TemplateParserTest {
         String result = parser.replacePlaceholders(WITHOUT_PLACEHOLDERS_TEMPLATE, placeholderValues);
         Assertions.assertNotNull(result);
         Assertions.assertEquals(WITHOUT_PLACEHOLDERS_TEMPLATE, result);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { VALID_TEMPLATE_1, VALID_TEMPLATE_2, VALID_TEMPLATE_3})
+    public void getPlaceholdersFromTemplate_parameterizedTest(String template) {
+        TemplateParser parser = new TemplateParser();
+        List<String> placeholders = parser.parseTemplate(template);
+        Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders));
+    }
+
+    @TestFactory
+    public Stream<DynamicTest> getPlaceholdersFromTemplate_dynamicTest() {
+        String template = "Some text input 1: #{value1}. ";
+        TemplateParser parser = new TemplateParser();
+        return IntStream
+                .iterate(1, n -> n+1)
+                .limit(5)
+                .mapToObj(n -> DynamicTest.dynamicTest("dynamicTestFromStream " + n, () -> {
+                    List<String> placeholders = parser.parseTemplate(template.repeat(n));
+                    Assertions.assertTrue(CollectionUtils.isNotEmpty(placeholders));
+                }));
     }
 
 }
