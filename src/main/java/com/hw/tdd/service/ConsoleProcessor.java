@@ -24,15 +24,23 @@ public class ConsoleProcessor {
     }
 
     public String processTemplate() throws TemplateFormatException {
-        String template = scannerHelper.askForTemplate();
+        String template = askForTemplate();
 
         templateValidator.validate(template);
 
         List<String> placeholders = templateParser.parseTemplate(template);
 
-        Map<String, String> placeholderValues = scannerHelper.askForPlaceholderValues(placeholders);
+        Map<String, String> placeholderValues = askForPlaceholderValues(placeholders);
 
         return templateParser.replacePlaceholders(template, placeholderValues);
+    }
+
+    public String askForTemplate() {
+        return scannerHelper.askForTemplate();
+    }
+
+    public Map<String, String> askForPlaceholderValues(List<String> placeholders) throws TemplateFormatException {
+        return scannerHelper.askForPlaceholderValues(placeholders);
     }
 
 }
